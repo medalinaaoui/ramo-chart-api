@@ -7,6 +7,11 @@ loadType(mongoose);
 const monthSchema = new schema(
   {
     month: String,
+    revenue: {
+      type: mongoose.Types.Currency,
+      currency: "USD",
+      get: (v) => v / 100,
+    },
     expenses: {
       type: mongoose.Types.Currency,
       currency: "USD",
@@ -32,6 +37,11 @@ const monthSchema = new schema(
 const daySchema = new schema(
   {
     date: String,
+    expenses: {
+      type: mongoose.Types.Currency,
+      currency: "USD",
+      get: (v) => v / 100,
+    },
     expenses: {
       type: mongoose.Types.Currency,
       currency: "USD",

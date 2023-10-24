@@ -35,8 +35,8 @@ const connect = async () => {
     app.listen(process.env.PORT || port, (error) => {
       if (!error) console.log("server runnig on port: ", port);
     });
-    // await mongoose.connection.db.dropDatabase();
-    // kpi.insertMany(kpis);
+    await mongoose.connection.db.dropDatabase();
+    kpi.insertMany(kpis);
   } catch (error) {
     if (error) console.log("error from connecting to mongoDb: ", error);
   }
