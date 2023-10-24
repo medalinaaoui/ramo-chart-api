@@ -6,9 +6,11 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import kpiRouter from "./routes/kpiRouter.js";
+import kpi from "./model/kpi.js";
+import { kpis } from "./data/data.js";
 const app = express();
 dotenv.config();
-
+const port = 8001;
 app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -29,15 +31,14 @@ const connect = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
     console.log("connected successfully");
+    app.listen(process.env.PORT || port, (error) => {
+      if (!error) console.log("server runnig on port: ", port);
+    });
+    // await mongoose.connection.db.dropDatabase();
+    // kpi.insertMany(kpis);
   } catch (error) {
     if (error) console.log("error from connecting to mongoDb: ", error);
   }
 };
 connect();
-
-const port = 8001;
-app.listen(process.env.PORT || port, (error) => {
-  if (!error) console.log("server runnig on port: ", port);
-});
