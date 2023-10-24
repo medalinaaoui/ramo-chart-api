@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+import kpiRouter from "./routes/kpiRouter.js";
 const app = express();
 dotenv.config();
 
@@ -20,9 +21,7 @@ app.use(
 );
 app.use(cors());
 
-app.get("/test", (req, res) => {
-  res.send("hell yeah!!");
-});
+app.use("/api/kpi", kpiRouter);
 
 const connect = async () => {
   try {
