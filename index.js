@@ -7,6 +7,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import kpiRouter from "./routes/kpiRouter.js";
 import productRouter from "./routes/productRouter.js";
+import transactionRouter from "./routes/transactionRouter.js";
 import kpi from "./model/kpi.js";
 import product from "./model/product.js";
 import transaction from "./model/transaction.js";
@@ -28,6 +29,7 @@ app.use(cors());
 
 app.use("/api/kpi", kpiRouter);
 app.use("/api/product", productRouter);
+app.use("/api/transaction", transactionRouter);
 
 const connect = async () => {
   try {
