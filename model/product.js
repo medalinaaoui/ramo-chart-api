@@ -1,19 +1,10 @@
 import mongoose from "mongoose";
-import { loadType } from "mongoose-currency";
-const schema = mongoose.Schema;
-loadType(mongoose);
 
-const productSchema = new schema({
-  price: {
-    type: mongoose.Types.Currency,
-    currency: "USD",
-    get: (v) => v / 100,
-  },
-  expense: {
-    type: mongoose.Types.Currency,
-    currency: "USD",
-    get: (v) => v / 100,
-  },
+const { Schema } = mongoose;
+
+const productSchema = new Schema({
+  price: Number,
+  expense: Number,
   transactions: [
     {
       type: mongoose.Schema.Types.ObjectId,
